@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tourist UI App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef3f7;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2f5d8a;
+            margin-bottom: 30px;
+        }
+
+        .message {
+            text-align: center;
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            width: 40%;
+            margin: 10px auto;
+            border: 1px solid #c3e6cb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #2f5d8a;
+            color: white;
+            padding: 14px;
+        }
+
+        td {
+            padding: 12px;
+        }
+
+        tr:hover {
+            background: #f0f8ff;
+        }
+
+        .btn {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete {
+            background: #d9534f;
+            color: white;
+        }
+
+        .update {
+            background: #0275d8;
+            color: white;
+        }
+
+        .add-btn {
+            background: #5cb85c;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+        }
+
+        .form-container {
+            margin-top: 40px;
+            background: white;
+            padding: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🧳 Tourist Management Portal</h1>
+
+<!-- SUCCESS MESSAGE -->
+<p th:if="${message}" th:text="${message}" class="message"></p>
+
+<!-- TABLE -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Package</th>
+        <th>Budget</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="t : ${tourists}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.name}"></td>
+        <td th:text="${t.city}"></td>
+        <td th:text="${t.packageType}"></td>
+        <td style="font-weight:bold; color:#007b5e;" th:text="${t.budget}"></td>
+
+        <td>
+
+            <!-- DELETE -->
+            <form action="/delete" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${t.id}">
+                <button class="btn delete">Delete</button>
+            </form>
+
+            <!-- UPDATE -->
+            <form action="/update-budget" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${t.id}">
+                <input type="number" name="newBudget" step="0.01" placeholder="Budget" style="width:80px;">
+                <button class="btn update">Update</button>
+            </form>
+
+        </td>
+    </tr>
+</table>
+
+<!-- ADD FORM -->
+<div class="form-container">
+
+    <h2 style="text-align:center; color:#2f5d8a;">➕ Add New Tourist</h2>
+
+    <form action="/add" method="post" style="text-align:center;">
+
+        <input name="name" placeholder="Name" required>
+
+        <input name="city" placeholder="City" required>
+
+        <input name="packageType" placeholder="Package Type" required>
+
+        <input name="budget" type="number" step="0.01" placeholder="Budget" required>
+
+        <button type="submit" class="add-btn">Add Tourist</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

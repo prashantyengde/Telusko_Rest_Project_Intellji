@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add / Update Course</title>
+
+    <style>
+        body {
+            font-family: "Poppins", "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 70px auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            animation: fadeIn 0.7s ease-in-out;
+            border-top: 6px solid #3b82f6;
+        }
+
+        h3 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            font-size: 26px;
+            letter-spacing: 0.5px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2933;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #c7d2fe;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s ease;
+            margin-bottom: 18px;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            padding: 10px 26px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.25s ease;
+            box-shadow: 0 5px 12px rgba(22, 163, 74, 0.35);
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 18px rgba(22, 163, 74, 0.45);
+        }
+
+        .btn-cancel {
+            background: linear-gradient(135deg, #64748b, #475569);
+            color: white;
+            border: none;
+            padding: 10px 26px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.25s ease;
+            box-shadow: 0 5px 12px rgba(71, 85, 105, 0.35);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-cancel:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 18px rgba(71, 85, 105, 0.45);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>Course Details</h3>
+
+        <form th:action="@{/registerCourse}" th:object="${course}" method="POST">
+
+            <!-- Hidden ID for update -->
+            <input type="hidden" th:field="*{id}" />
+
+            <label>Course Name</label>
+            <input type="text" th:field="*{courseName}" placeholder="Enter course name" required />
+
+            <label>Trainer Name</label>
+            <input type="text" th:field="*{trainerName}" placeholder="Enter trainer name" required />
+
+            <label>Duration (in hours)</label>
+            <input type="number" th:field="*{duration}" placeholder="Enter duration" required />
+
+            <label>Fees</label>
+            <input type="number" step="0.01" th:field="*{fees}" placeholder="Enter fees" required />
+
+            <div class="btn-group">
+                <button type="submit" class="btn-submit">Save Course</button>
+                <a th:href="@{/courselist}" class="btn-cancel">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
