@@ -1,0 +1,81 @@
+Spring AI
+==========
+
+==> Artificial Intelligence --> AI
+
+The broad science of making machines perform tasks that normally require human intelligence (learning, reasoning, problem-solving, decision-making)
+
+==> Machine Learning --> ML
+
+A subset of AI where machines learn patterns from data and improve without being explicitly programmed.
+
+==> Deep Learning --> DL 
+
+A type of ML using multi-layered neural networks (inspired by the human brain) to learn complex patterns.
+
+==> Large Language Model --> LLM
+
+Very large neural networks trained on massive amounts of text data. They predict the next word/token and can generate human-like text.
+
+==> Token --> Tokenization
+
+Basic Explanation: Small pieces of text that the model processes. One word can be 1–3 tokens.
+
+==> Context Window
+
+The maximum number of tokens an LLM can handle in one conversation (input + output)
+
+==> Prompt
+
+The text/input you give to the LLM. Good prompting = better results.
+
+Role + Task + Context + Format = Powerful Prompt
+
+ex: Act as a senior DevOps engineer and explain Docker to a beginner developer using simple examples and bullet points.
+
+==> Embedding
+
+Converting text into a list of numbers (vector) that represents its meaning.
+
+"Spring Boot tutorial"      →  [0.15, -0.42, 0.69, ...]
+"cat" and "kitten" get nearby numbers
+
+
+==> Vector Database / Store
+
+A special database designed to store embeddings and find similar vectors quickly
+
+Documents --> Embeddings --> [Vector Database]
+
+
+==> Retrieval Augmented Generation -> RAG
+
+Technique to connect LLM with your private data. Retrieve relevant info → Add to prompt → Generate accurate answer. Reduces hallucinations.
+
+==> Hallucination
+
+When LLM generates confident but factually incorrect information.
+
+
+Without RAG:   LLM → "Made-up Answer" ❌
+With RAG:      Your Data + LLM → Grounded Answer ✅
+
+==> Agent
+
+An AI system that can reason, use tools, plan steps, and achieve complex goals autonomously.
+
+==> Model Context Protocol -> MCP
+
+A standard way for AI agents to connect to external tools and data
+
+
+==> LangChain4j / Spring AI
+
+Java frameworks that make it easy to connect LLMs, tools, and memory. Like Spring Boot for AI — handles the boring boilerplate so you focus on logic.
+
+
+
+
+
+
+
